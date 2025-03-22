@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorSurface">#F5F5F5</color>
+    <color name="colorText">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorDivider">#BDBDBD</color>
+    
+    <!-- Template colors -->
+    <color name="modernPrimary">#2979FF</color>
+    <color name="modernAccent">#00B0FF</color>
+    
+    <color name="professionalPrimary">#455A64</color>
+    <color name="professionalAccent">#607D8B</color>
+    
+    <color name="creativePrimary">#6200EA</color>
+    <color name="creativeAccent">#7C4DFF</color>
+</resources>

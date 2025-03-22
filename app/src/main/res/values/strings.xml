@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resume Builder</string>
+    
+    <!-- Main Activity -->
+    <string name="app_logo">Resume Builder Logo</string>
+    <string name="app_description">Create professional resumes with ease using our AI-powered resume builder</string>
+    <string name="card_title">Smart Resume Creation</string>
+    <string name="card_description">Build your perfect resume in minutes with our intuitive tools and AI assistance</string>
+    <string name="features_title">Key Features</string>
+    <string name="feature_1">AI-Powered Content Generation</string>
+    <string name="feature_2">Professional Templates</string>
+    <string name="feature_3">Easy PDF Export</string>
+    <string name="feature_4">Quick Resume Sharing</string>
+    <string name="btn_start_resume">Start Building Resume</string>
+    
+    <!-- Common strings -->
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    
+    <!-- User Details Activity -->
+    <string name="user_details">Personal Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="website">Website (Optional)</string>
+    <string name="linkedin">LinkedIn (Optional)</string>
+    
+    <!-- Education Activity -->
+    <string name="education">Education</string>
+    <string name="education_subtitle">Add your educational background</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_next">Next</string>
+    <string name="add_education">Add Education</string>
+    <string name="degree">Degree</string>
+    <string name="institution">Institution</string>
+    <string name="location">Location</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="present">Present</string>
+    <string name="description">Description</string>
+    
+    <!-- Work Experience Activity -->
+    <string name="work_experience">Work Experience</string>
+    <string name="add_work">Add Work Experience</string>
+    <string name="job_title">Job Title</string>
+    <string name="company">Company</string>
+    <string name="responsibilities">Responsibilities</string>
+    
+    <!-- Skills Activity -->
+    <string name="skills">Skills</string>
+    <string name="add_skill">Add Skill</string>
+    <string name="skill_name">Skill</string>
+    <string name="skill_level">Proficiency Level</string>
+    
+    <!-- Summary Activity -->
+    <string name="summary">Professional Summary</string>
+    <string name="summary_hint">Write a professional summary...</string>
+    <string name="generate_ai">Generate with AI</string>
+    <string name="refine_ai">Refine with AI</string>
+    
+    <!-- Template Selection Activity -->
+    <string name="template_selection">Choose Template</string>
+    <string name="template_modern">Modern</string>
+    <string name="template_professional">Professional</string>
+    <string name="template_creative">Creative</string>
+    
+    <!-- Preview Activity -->
+    <string name="preview">Preview Resume</string>
+    <string name="resume_preview">Resume Preview</string>
+    <string name="resume_preview_subtitle">Review your resume before exporting</string>
+    <string name="edit_resume">Edit Resume</string>
+    
+    <!-- Export Activity -->
+    <string name="export">Export Resume</string>
+    <string name="btn_export">Export</string>
+    <string name="btn_edit">Edit</string>
+    <string name="skills_subtitle">Add your professional skills</string>
+    <string name="generate_skills">Generate Skills</string>
+    <string name="app_slogan">Create Your Professional Resume</string>
+    <string name="professional_summary">Professional Summary</string>
+    <string name="summary_subtitle">Write a compelling professional summary</string>
+    <string name="generate_summary">Generate Summary</string>
+    <string name="hint_summary">Enter your professional summary here...</string>
+    <string name="select_template">Select Template</string>
+    <string name="template_selection_subtitle">Choose a template for your resume</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="personal_details_subtitle">Enter your personal information</string>
+    <string name="hint_full_name">Enter your full name</string>
+    <string name="hint_email">Enter your email address</string>
+    <string name="hint_phone">Enter your phone number</string>
+    <string name="hint_address">Enter your address</string>
+    <string name="hint_linkedin">Enter your LinkedIn profile URL</string>
+    <string name="hint_job_role">Enter your desired job role</string>
+    <string name="work_experience_subtitle">Add your work experience</string>
+    <string name="pdf_export">PDF Export</string>
+    <string name="pdf_export_subtitle">Export your resume as PDF</string>
+    <string name="pdf_icon">PDF Icon</string>
+    <string name="btn_share">Share Resume</string>
+    <string name="btn_home">Back to Home</string>
+    <string name="export_pdf">Export as PDF</string>
+    <string name="share">Share</string>
+    <string name="resume_exported">Resume exported successfully</string>
+    <string name="export_error">Error exporting resume</string>
+    
+    <!-- AI Dialog -->
+    <string name="generating">Generating content…</string>
+    <string name="ai_error">Error generating content. Please try again.</string>
+</resources>

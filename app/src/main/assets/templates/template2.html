@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Resume</title>
+    <!-- CSS will be inserted here -->
+</head>
+<body>
+    <div class="resume creative">
+        <div class="sidebar">
+            <div class="profile">
+                <h1>{{NAME}}</h1>
+                <p class="job-title">{{JOB_ROLE}}</p>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Contact</h2>
+                <ul>
+                    <li><strong>Email:</strong> {{EMAIL}}</li>
+                    <li><strong>Phone:</strong> {{PHONE}}</li>
+                    <li><strong>Address:</strong> {{ADDRESS}}</li>
+                    <li><strong>LinkedIn:</strong> {{LINKEDIN}}</li>
+                </ul>
+            </div>
+            
+            <div class="skills-section">
+                <h2>Skills</h2>
+                {{SKILLS}}
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <section class="summary">
+                <h2>About Me</h2>
+                <p>{{SUMMARY}}</p>
+            </section>
+            
+            <section class="experience">
+                <h2>Work Experience</h2>
+                {{WORK_EXPERIENCE}}
+            </section>
+            
+            <section class="education">
+                <h2>Education</h2>
+                {{EDUCATION}}
+            </section>
+        </div>
+    </div>
+</body>
+</html>

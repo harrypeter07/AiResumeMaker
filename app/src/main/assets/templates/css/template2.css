@@ -1,0 +1,129 @@
+/* Creative Resume Template CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.resume {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    display: flex;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+    width: 30%;
+    background: #FF4081;
+    color: white;
+    padding: 30px;
+}
+
+.main-content {
+    width: 70%;
+    padding: 30px;
+}
+
+.profile h1 {
+    font-size: 24px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.job-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 8px 0 20px;
+    opacity: 0.9;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info h2, .skills-section h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.main-content h2 {
+    font-size: 20px;
+    color: #FF4081;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 20px;
+}
+
+.experience-item h3, .education-item h3 {
+    font-size: 17px;
+    margin: 0;
+    color: #444;
+}
+
+.experience-item h4, .education-item h4 {
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: 500;
+    color: #666;
+}
+
+.experience-date, .education-year {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+.experience-description {
+    font-size: 15px;
+    margin: 8px 0;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skill-item {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.skill-proficiency {
+    opacity: 0.8;
+    font-size: 13px;
+}
+
+@media print {
+    body {
+        background: none;
+    }
+    
+    .resume {
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_name" type="id" />
+    <item name="tv_job_title" type="id" />
+    <item name="tv_date" type="id" />
+    <item name="btn_view" type="id" />
+    <item name="btn_save" type="id" />
+    <item name="experience_container" type="id" />
+    <item name="tv_dates" type="id" />
+    <item name="btn_enhance" type="id" />
+    <item name="et_location" type="id" />
+    <item name="cb_current_job" type="id" />
+    <item name="et_category" type="id" />
+    <item name="sb_proficiency" type="id" />
+    <item name="tv_proficiency_text" type="id" />
+    <item name="til_category" type="id" />
+</resources>

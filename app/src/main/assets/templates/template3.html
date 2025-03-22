@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Resume</title>
+    <!-- CSS will be inserted here -->
+</head>
+<body>
+    <div class="resume minimal">
+        <header>
+            <div class="name-title">
+                <h1>{{NAME}}</h1>
+                <p class="job-title">{{JOB_ROLE}}</p>
+            </div>
+            <div class="contact-info">
+                <p>{{EMAIL}} | {{PHONE}} | {{ADDRESS}} | {{LINKEDIN}}</p>
+            </div>
+        </header>
+        
+        <hr>
+        
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>{{SUMMARY}}</p>
+        </section>
+        
+        <hr>
+        
+        <div class="two-column">
+            <div class="left-column">
+                <section class="experience">
+                    <h2>Experience</h2>
+                    {{WORK_EXPERIENCE}}
+                </section>
+            </div>
+            
+            <div class="right-column">
+                <section class="education">
+                    <h2>Education</h2>
+                    {{EDUCATION}}
+                </section>
+                
+                <section class="skills">
+                    <h2>Skills</h2>
+                    {{SKILLS}}
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

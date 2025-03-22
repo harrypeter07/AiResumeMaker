@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume</title>
+    <!-- CSS will be inserted here -->
+</head>
+<body>
+    <div class="resume professional">
+        <header>
+            <h1>{{NAME}}</h1>
+            <p class="job-title">{{JOB_ROLE}}</p>
+            <div class="contact-info">
+                <p>{{EMAIL}} | {{PHONE}}</p>
+                <p>{{ADDRESS}}</p>
+                <p>{{LINKEDIN}}</p>
+            </div>
+        </header>
+        
+        <section class="summary">
+            <h2>Professional Summary</h2>
+            <p>{{SUMMARY}}</p>
+        </section>
+        
+        <section class="experience">
+            <h2>Work Experience</h2>
+            {{WORK_EXPERIENCE}}
+        </section>
+        
+        <section class="education">
+            <h2>Education</h2>
+            {{EDUCATION}}
+        </section>
+        
+        <section class="skills">
+            <h2>Skills</h2>
+            {{SKILLS}}
+        </section>
+    </div>
+</body>
+</html>
