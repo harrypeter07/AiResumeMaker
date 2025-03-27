@@ -128,4 +128,8 @@ public class ResumeData implements Serializable {
     public void setSelectedTemplateId(int selectedTemplateId) {
         this.selectedTemplateId = selectedTemplateId;
     }
+
+    public String getJobRole() {
+        return "job role";
+    }
 }

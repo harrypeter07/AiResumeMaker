@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Resume Builder</string>
-    
+
     <!-- Main Activity -->
     <string name="app_logo">Resume Builder Logo</string>
     <string name="app_description">Create professional resumes with ease using our AI-powered resume builder</string>
@@ -33,11 +32,7 @@
     <string name="linkedin">LinkedIn (Optional)</string>
     
     <!-- Education Activity -->
-    <string name="education">Education</string>
-    <string name="education_subtitle">Add your educational background</string>
-    <string name="btn_back">Back</string>
-    <string name="btn_next">Next</string>
-    <string name="add_education">Add Education</string>
+
     <string name="degree">Degree</string>
     <string name="institution">Institution</string>
     <string name="location">Location</string>
@@ -76,7 +71,20 @@
     <string name="resume_preview">Resume Preview</string>
     <string name="resume_preview_subtitle">Review your resume before exporting</string>
     <string name="edit_resume">Edit Resume</string>
-    
+    <string name="app_name">Resume Builder</string>
+    <string name="education">Education</string>
+    <string name="education_subtitle">Add your educational background</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_save">Save</string>
+    <string name="add_education">Add Education</string>
+    <string name="hint_degree">Degree (e.g., B.S. in Computer Science)</string>
+    <string name="hint_field_of_study">Field of Study</string>
+    <string name="hint_institution">Institution</string>
+    <string name="hint_start_date">Start Date (e.g., 2018)</string>
+    <string name="hint_end_date">End Date (e.g., 2022)</string>
+    <string name="hint_gpa">GPA (optional)</string>
+    <string name="hint_description">Description (optional)</string>
     <!-- Export Activity -->
     <string name="export">Export Resume</string>
     <string name="btn_export">Export</string>

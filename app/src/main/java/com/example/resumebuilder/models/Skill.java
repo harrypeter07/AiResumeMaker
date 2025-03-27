@@ -75,4 +75,9 @@ public class Skill implements Serializable {
     public String toString() {
         return name + " (" + getProficiencyText() + ")";
     }
+
+    public CharSequence getProficiency() {
+
+        return null;
+    }
 }

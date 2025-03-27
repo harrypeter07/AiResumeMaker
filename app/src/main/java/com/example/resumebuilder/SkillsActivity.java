@@ -385,7 +385,8 @@ public class SkillsActivity extends AppCompatActivity {
         requestBody.put("contents", contents);
         
         // Make API call
-        Call<Map<String, Object>> call = geminiApiService.suggestSkills(requestBody);
+        Call<Map<String, Object>> call = new Call<Map< geminiApiService.suggestSkills(requestBody)>
+        geminiApiService.suggestSkills(requestBody);
         call.enqueue(new Callback<Map<String, Object>>() {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {

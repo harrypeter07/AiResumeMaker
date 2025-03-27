@@ -14,4 +14,7 @@
     <item name="sb_proficiency" type="id" />
     <item name="tv_proficiency_text" type="id" />
     <item name="til_category" type="id" />
+    <item name="skills_container" type="id" />
+    <item name="btn_suggest_skills" type="id" />
+    <item name="tv_category" type="id" />
 </resources>

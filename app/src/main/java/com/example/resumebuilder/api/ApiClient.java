@@ -1,12 +1,16 @@
 package com.example.resumebuilder.api;
 
 import android.util.Log;
+
+import com.example.resumebuilder.api.models.GeminiResponse;
+
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -99,5 +103,9 @@ public class ApiClient {
      */
     public static GeminiApiService getGeminiApiService() {
         return getClient().create(GeminiApiService.class);
+    }
+
+    public static Call<GeminiResponse> generateContent(String string) {
+        return null;
     }
 }

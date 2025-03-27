@@ -10,17 +10,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.resumebuilder.MainActivity;
 import com.example.resumebuilder.R;
-import com.example.resumebuilder.api.GeminiApiService;
-import com.example.resumebuilder.api.RetrofitClient;
+import com.example.resumebuilder.api.ApiClient;
 import com.example.resumebuilder.api.models.GeminiRequest;
 import com.example.resumebuilder.api.models.GeminiResponse;
 import com.example.resumebuilder.models.Education;
+import com.example.resumebuilder.models.ResumeData;
 import com.example.resumebuilder.models.Skill;
 import com.example.resumebuilder.models.WorkExperience;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,15 +33,21 @@ public class SummaryActivity extends AppCompatActivity {
     private Button btnNext;
     private Button btnBack;
     private ProgressBar progressBar;
-    private GeminiApiService apiService;
+    private ResumeData resumeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        // Initialize Retrofit service
-        apiService = RetrofitClient.getClient().create(GeminiApiService.class);
+        // Get ResumeData from Intent
+        if (getIntent() != null && getIntent().hasExtra("resume_data")) {
+            resumeData = (ResumeData) getIntent().getSerializableExtra("resume_data");
+        } else {
+            Toast.makeText(this, "Error: No resume data found", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         // Initialize UI components
         etSummary = findViewById(R.id.et_summary);
@@ -50,27 +56,30 @@ public class SummaryActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
         progressBar = findViewById(R.id.progress_bar);
 
-        // If summary is already generated, show it
-        if (MainActivity.resumeData.getSummary() != null && !MainActivity.resumeData.getSummary().isEmpty()) {
-            etSummary.setText(MainActivity.resumeData.getSummary());
+        // Ensure ProgressBar is initially hidden
+        progressBar.setVisibility(View.GONE);
+
+        // Populate summary if it exists
+        if (resumeData.getSummary() != null && !resumeData.getSummary().isEmpty()) {
+            etSummary.setText(resumeData.getSummary());
         }
 
         // Set up click listeners
         btnGenerateSummary.setOnClickListener(v -> generateSummaryWithAI());
 
         btnNext.setOnClickListener(v -> {
-            // Validate that summary exists
             String summary = etSummary.getText().toString().trim();
             if (summary.isEmpty()) {
-                Toast.makeText(SummaryActivity.this, "Please generate or write a summary first", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please generate or write a summary first", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Save summary to resume data
-            MainActivity.resumeData.setSummary(summary);
-            
-            // Navigate to template selection
+            resumeData.setSummary(summary);
+
+            // Navigate to TemplateSelectionActivity
             Intent intent = new Intent(SummaryActivity.this, TemplateSelectionActivity.class);
+            intent.putExtra("resume_data", resumeData);
             startActivity(intent);
         });
 
@@ -83,18 +92,18 @@ public class SummaryActivity extends AppCompatActivity {
         btnGenerateSummary.setEnabled(false);
 
         // Collect resume data to construct prompt
-        String fullName = MainActivity.resumeData.getFullName();
-        String jobRole = MainActivity.resumeData.getJobRole();
-        ArrayList<Education> educationList = MainActivity.resumeData.getEducationList();
-        ArrayList<WorkExperience> workExperienceList = MainActivity.resumeData.getWorkExperienceList();
-        ArrayList<Skill> skillsList = MainActivity.resumeData.getSkillsList();
+        String fullName = resumeData.getFullName();
+        String jobRole = resumeData.getJobRole();
+        List<Education> educationList = resumeData.getEducationList();
+        List<WorkExperience> workExperienceList = resumeData.getWorkExperienceList();
+        List<Skill> skillsList = resumeData.getSkillsList();
 
         // Build prompt for AI
         StringBuilder promptBuilder = new StringBuilder();
         promptBuilder.append("Generate a professional resume summary for a ");
-        promptBuilder.append(jobRole);
+        promptBuilder.append(jobRole != null ? jobRole : "professional");
         promptBuilder.append(" named ");
-        promptBuilder.append(fullName);
+        promptBuilder.append(fullName != null ? fullName : "an individual");
         promptBuilder.append(" with the following qualifications:\n\n");
 
         // Add education
@@ -103,7 +112,8 @@ public class SummaryActivity extends AppCompatActivity {
             for (Education education : educationList) {
                 promptBuilder.append("- ").append(education.getDegree())
                         .append(" from ").append(education.getInstitution())
-                        .append(" (").append(education.getYear()).append(")\n");
+                        .append(" (").append(education.getStartDate())
+                        .append(" to ").append(education.getEndDate()).append(")\n");
             }
         } else {
             promptBuilder.append("- No education data provided\n");
@@ -116,13 +126,14 @@ public class SummaryActivity extends AppCompatActivity {
                 promptBuilder.append("- ").append(workExperience.getPosition())
                         .append(" at ").append(workExperience.getCompany())
                         .append(" (").append(workExperience.getStartDate());
-                
+
                 if (workExperience.getEndDate() != null && !workExperience.getEndDate().isEmpty()) {
                     promptBuilder.append(" to ").append(workExperience.getEndDate());
+                } else {
+                    promptBuilder.append(" - Present");
                 }
-                
                 promptBuilder.append(")\n");
-                
+
                 if (workExperience.getDescription() != null && !workExperience.getDescription().isEmpty()) {
                     promptBuilder.append("  ").append(workExperience.getDescription()).append("\n");
                 }
@@ -136,7 +147,7 @@ public class SummaryActivity extends AppCompatActivity {
         if (skillsList != null && !skillsList.isEmpty()) {
             for (Skill skill : skillsList) {
                 promptBuilder.append("- ").append(skill.getName());
-                if (skill.getProficiency() != null && !skill.getProficiency().isEmpty()) {
+                if (true) {
                     promptBuilder.append(" (").append(skill.getProficiency()).append(")");
                 }
                 promptBuilder.append("\n");
@@ -147,29 +158,31 @@ public class SummaryActivity extends AppCompatActivity {
 
         promptBuilder.append("\nPlease write a concise, professional summary paragraph (3-5 sentences) " +
                 "highlighting the key qualifications, experience, and skills. The summary should be in first person and tailored for the role of ");
-        promptBuilder.append(jobRole);
+        promptBuilder.append(jobRole != null ? jobRole : "a professional");
         promptBuilder.append(". Make it compelling and focused on value proposition to potential employers.");
 
-        // Create request object
+        // Create request object (API key should be set in ApiClient)
         GeminiRequest request = new GeminiRequest(promptBuilder.toString());
 
-        // Make API call
-        Call<GeminiResponse> call = apiService.generateContent(request);
+        // Make API call using ApiClient
+        Call<GeminiResponse> call = ApiClient.generateContent(promptBuilder.toString());
         call.enqueue(new Callback<GeminiResponse>() {
             @Override
             public void onResponse(Call<GeminiResponse> call, Response<GeminiResponse> response) {
                 progressBar.setVisibility(View.GONE);
                 btnGenerateSummary.setEnabled(true);
-                
+
                 if (response.isSuccessful() && response.body() != null) {
-                    String generatedSummary = response.body().getContent();
+                    String generatedSummary = response.body().getText(); // Use getText() as per GeminiResponse
                     if (generatedSummary != null && !generatedSummary.isEmpty()) {
                         etSummary.setText(generatedSummary);
                     } else {
                         Toast.makeText(SummaryActivity.this, "Failed to generate summary: Empty response", Toast.LENGTH_SHORT).show();
+                        provideFallbackSummary();
                     }
                 } else {
                     Toast.makeText(SummaryActivity.this, "Failed to generate summary: " + response.message(), Toast.LENGTH_SHORT).show();
+                    provideFallbackSummary();
                 }
             }
 
@@ -178,35 +191,40 @@ public class SummaryActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 btnGenerateSummary.setEnabled(true);
                 Toast.makeText(SummaryActivity.this, "Failed to connect to AI service: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                
-                // Provide a basic summary as fallback (this is for demo purposes)
                 provideFallbackSummary();
             }
         });
     }
-    
+
     private void provideFallbackSummary() {
-        // This is a fallback method for demo purposes
-        // Create a basic summary based on available data
-        
-        String jobRole = MainActivity.resumeData.getJobRole();
-        ArrayList<WorkExperience> workExperiences = MainActivity.resumeData.getWorkExperienceList();
+        String jobRole = resumeData.getJobRole();
+        List<WorkExperience> workExperiences = resumeData.getWorkExperienceList();
         int yearsOfExperience = 0;
-        
+
         if (workExperiences != null && !workExperiences.isEmpty()) {
-            yearsOfExperience = workExperiences.size(); // Simple approximation
+            // Improved approximation: Calculate years based on earliest start date to latest end date
+            for (WorkExperience exp : workExperiences) {
+                try {
+                    int startYear = Integer.parseInt(exp.getStartDate().substring(exp.getStartDate().length() - 4));
+                    int endYear = exp.getEndDate() != null && !exp.getEndDate().isEmpty() ?
+                            Integer.parseInt(exp.getEndDate().substring(exp.getEndDate().length() - 4)) :
+                            2025; // Use current year if ongoing
+                    yearsOfExperience = Math.max(yearsOfExperience, endYear - startYear);
+                } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+                    yearsOfExperience = workExperiences.size(); // Fallback to count
+                }
+            }
         }
-        
+
         StringBuilder fallbackSummary = new StringBuilder();
-        fallbackSummary.append("Dedicated and results-driven ").append(jobRole);
+        fallbackSummary.append("I am a dedicated and results-driven ").append(jobRole != null ? jobRole : "professional");
         fallbackSummary.append(" with ").append(yearsOfExperience > 0 ? yearsOfExperience : "several");
-        fallbackSummary.append(" years of experience in the field. Proven track record of delivering high-quality work and meeting project deadlines. ");
-        fallbackSummary.append("Skilled in various aspects of ").append(jobRole.toLowerCase());
-        fallbackSummary.append(" with strong problem-solving abilities and attention to detail. ");
-        fallbackSummary.append("Excellent communication skills with a collaborative mindset. Looking to leverage my skills and experience in a challenging role as a ").append(jobRole).append(".");
-        
+        fallbackSummary.append(" years of experience in the field. I have a proven track record of delivering high-quality work and meeting project deadlines. ");
+        fallbackSummary.append("My skills in ").append(jobRole != null ? jobRole.toLowerCase() : "my field");
+        fallbackSummary.append(" enable me to solve complex problems with attention to detail. ");
+        fallbackSummary.append("With excellent communication and a collaborative mindset, I am eager to leverage my expertise in a challenging ").append(jobRole != null ? jobRole : "role").append(" position.");
+
         etSummary.setText(fallbackSummary.toString());
-        
-        Toast.makeText(this, "Using fallback summary. You can edit it as needed.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Using fallback summary due to API failure. You can edit it as needed.", Toast.LENGTH_LONG).show();
     }
 }
